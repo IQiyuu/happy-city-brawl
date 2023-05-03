@@ -12,15 +12,16 @@ public class Building : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip placement;
     [SerializeField] GameManager gm;
-    private int happiness,population;
+    [SerializeField] private GameObject  road;
+    private int hp,pp;
 
     void    Start() {
         Init();
     }
 
     void    Init() {
-        happiness = baseHappiness;
-        population = basePopulation;
+        hp = baseHappiness;
+        pp = basePopulation;
     }
 
     void    OnMouseDown() {
@@ -51,6 +52,92 @@ public class Building : MonoBehaviour
         width = tmp;
     }
 
+    bool    check_road(float startingX, float startingY) { /* Probleme avec le check pour savoir si la route est posable / la tile qui est set est pas la bonne a chaque fois */
+        switch (transform.eulerAngles.z) {
+            case 90:
+                for (int j = 0; j < height; j++) { // 0-1.5 = 0-3 -> 0-
+                    var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + width, startingY * 2 - j - 1));
+                    if (tile != null) {
+                        if (tile.getContent() != null && tile.getContent().tag != "Road") {
+                            print("ROADCHECK it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX * 2 + width) + "," + (startingY * 2 - j - 1) + ")");
+                            return false;
+                        }
+                    } else {
+                        print("Not in grid(" + (startingX + width) + "," + (startingY - j) + ")");
+                        return false;
+                    }
+                }
+                for (float j = 0; j < height; j++) {
+                    print(" at (" + (startingX * 2 + width) + "," + (startingY * 2 - j - 1) + ")");
+                    var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + width, startingY * 2 - j - 1));
+                    var newRoad = Instantiate(road, new Vector3((float)(startingX + width / 2 + 0.25), (float)(startingY - j / 2 - 0.25), -1), Quaternion.identity);
+                    tile.setContent(road);
+                }
+                break;
+            case 180:
+                for (int i = 0; i < width; i++) { // 0-1.5 = 0-3 -> 0-
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 + height - 1));
+                        if (tile != null) {
+                            if (tile.getContent() != null && tile.getContent().tag != "Road") {
+                                print("ROADCHECK it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX * 2 + i) + "," + (startingY * 2 + height - 1) + ")");
+                                return false;
+                            }
+                        } else {
+                            print("Not in grid(" + (startingX + i) + "," + (startingY - height) + ")");
+                            return false;
+                        }
+                    }
+                    for (float i = 0; i < width; i++) {
+                        print(" at (" + (startingX * 2 + i) + "," + (startingY * 2 + height) + ")");
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 + height));
+                        var newRoad = Instantiate(road, new Vector3((float)(startingX + i / 2 + 0.25), (float)(startingY + height / 2 - 0.75), -1), Quaternion.identity);
+                        tile.setContent(road);
+                    }
+                break;
+            case 270:
+                for (int j = 0; j < height; j++) { // 0-1.5 = 0-3 -> 0-
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2, startingY * 2 - j - 1));
+                        if (tile != null) {
+                            if (tile.getContent() != null && tile.getContent().tag != "Road") {
+                                print("ROADCHECK it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX * 2 - 1) + "," + (startingY * 2 - j - 1) + ")");
+                                return false;
+                            }
+                        } else {
+                            print("Not in grid(" + (startingX - 1) + "," + (startingY - j) + ")");
+                            return false;
+                        }
+                    }
+                    for (float j = 0; j < height ; j++) {
+                        print(" at (" + (startingX * 2 + width) + "," + (startingY * 2 - j - 1) + ")");
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2, startingY * 2 - j - 1));
+                        var newRoad = Instantiate(road, new Vector3((float)(startingX - 0.25), (float)(startingY - j / 2 - 0.25), -1), Quaternion.identity);
+                        tile.setContent(road);
+                    }
+                break;
+            default:
+                for (int i = 0; i < width; i++) { // 0-1.5 = 0-3 -> 0-
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 - height - 1));
+                        if (tile != null) {
+                            if (tile.getContent() != null && tile.getContent().tag != "Road") {
+                                print("ROADCHECK it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX * 2 + i) + "," + (startingY * 2 - height - 1) + ")");
+                                return false;
+                            }
+                        } else {
+                            print("Not in grid(" + (startingX + i) + "," + (startingY - height) + ")");
+                            return false;
+                        }
+                    }
+                    for (float i = 0; i < width; i++) {
+                        print(" at (" + (startingX * 2 + i) + "," + (startingY * 2 - height + 1) + ")");
+                        var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 - height - 1));
+                        var newRoad = Instantiate(road, new Vector3((float)(startingX + i / 2 + 0.25), (float)(startingY - height / 2 - 0.25), -1), Quaternion.identity);
+                        tile.setContent(newRoad);
+                    }
+                break;
+        }
+        return true;
+    }
+
     void    placePiece() {
         float valeurX = (float)transform.position.x - (((float)width) / 4);
         float startingX = (float)Math.Round(valeurX / 5, 1);
@@ -62,6 +149,7 @@ public class Building : MonoBehaviour
             for (int j = 0; j < height; j++) { // 0-1.5 = 0-3 -> 0-
                 var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 - j - 1));
                 if (tile != null) {
+                    //print(tile.getContent() + " at (" + (startingX * 2 + i) + "," + (startingY * 2 - j - 1) + ")");
                     if (tile.getContent() != null) {
                         print("it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX + i) + "," + (startingY - j) + ")");
                         return ;
@@ -72,6 +160,7 @@ public class Building : MonoBehaviour
                 }
             }
         }
+        if (!check_road(startingX, startingY))  return ;
         for(float i = 0; i < width; i++) {
             for (float j = 0; j < height; j++) {
                 var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 - j - 1));
@@ -79,11 +168,11 @@ public class Building : MonoBehaviour
             }
         }
         placed = true;
-        print(startingX + " " + startingY);
+        //print(startingX + " " + startingY);
         source.PlayOneShot(placement, 1);
         transform.position = new Vector3(startingX + ((float)(width) / 4), startingY - ((float)(height) / 4), -1);
-        gm.addPopulation(population);
-        gm.addHappiness(happiness);
+        gm.addPopulation(pp);
+        gm.addHappiness(hp);
     }
 
     void removePiece() {
@@ -101,19 +190,19 @@ public class Building : MonoBehaviour
         }
         placed = false;
         taken = false;
-        gm.remPopulation(population);
-        gm.remHappiness(happiness);
+        gm.remPopulation(pp);
+        gm.remHappiness(hp);
     }
 
-    public int  getPopulation() { return population; }
+    public int  getPopulation() { return pp; }
 
-    public int  getHappiness() { return happiness; }
+    public int  getHappiness() { return hp; }
 
-    public void addHappiness(int n) { happiness += n; }
+    public void addHappiness(int n) { hp += n; }
 
-    public void addPopulation(int n) { population += n; }
+    public void addPopulation(int n) { pp += n; }
 
-    public void resetHapiness(int n) { happiness = baseHappiness; }
+    public void resetHapiness(int n) { hp = baseHappiness; }
 
-    public void resetPopulation(int n) { population = basePopulation; }
+    public void resetPopulation(int n) { pp = basePopulation; }
 }

@@ -107,6 +107,7 @@ MonoBehaviour:
   source: {fileID: -8307877384551597148}
   placement: {fileID: 8300000, guid: a649c74ae6b5046a4af4b5b3b5a00ac9, type: 3}
   gm: {fileID: 7454961757942337409, guid: 10cf41abd071644379617567cd7db14c, type: 3}
+  road: {fileID: 285867324706241117, guid: 10fa2bfd3f07c4c71bc7724a32828ce9, type: 3}
 --- !u!61 &5093624007101918732
 BoxCollider2D:
   m_ObjectHideFlags: 0
