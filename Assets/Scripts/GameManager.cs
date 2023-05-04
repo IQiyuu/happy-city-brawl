@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] private Scoreboard	sb;
 	[SerializeField] private Grid   board;
+	[SerializeField] private Hand	hand;
 	private int		happiness, population;
 
 	void Start() { 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 		happiness = 0;
 		population = 0;
 		sb.refresh(happiness, population);
+		hand.generate();
 	}
 
 	void Update() {

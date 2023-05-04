@@ -14,6 +14,7 @@ public class Building : MonoBehaviour
     [SerializeField] GameManager gm;
     [SerializeField] private GameObject  road;
     private int hp,pp;
+    public int  handId = 0;
 
     void    Start() {
         Init();
@@ -51,8 +52,8 @@ public class Building : MonoBehaviour
         height = width;
         width = tmp;
     }
-
-    bool    check_road(float startingX, float startingY) { /* Probleme avec le check pour savoir si la route est posable / la tile qui est set est pas la bonne a chaque fois */
+/*
+    bool    check_road(float startingX, float startingY) {  Probleme avec le check pour savoir si la route est posable / la tile qui est set est pas la bonne a chaque fois 
         switch (transform.eulerAngles.z) {
             case 90:
                 for (int j = 0; j < height; j++) { // 0-1.5 = 0-3 -> 0-
@@ -136,7 +137,7 @@ public class Building : MonoBehaviour
                 break;
         }
         return true;
-    }
+    }*/
 
     void    placePiece() {
         float valeurX = (float)transform.position.x - (((float)width) / 4);
@@ -160,7 +161,7 @@ public class Building : MonoBehaviour
                 }
             }
         }
-        if (!check_road(startingX, startingY))  return ;
+       // if (!check_road(startingX, startingY))  return ;
         for(float i = 0; i < width; i++) {
             for (float j = 0; j < height; j++) {
                 var tile = GameObject.Find("GridManager").GetComponent<Grid>().getTile(new Vector2(startingX * 2 + i, startingY * 2 - j - 1));
