@@ -174,6 +174,7 @@ public class Building : MonoBehaviour
         transform.position = new Vector3(startingX + ((float)(width) / 4), startingY - ((float)(height) / 4), -1);
         gm.addPopulation(pp);
         gm.addHappiness(hp);
+        gm.hand.replace(this);
     }
 
     void removePiece() {

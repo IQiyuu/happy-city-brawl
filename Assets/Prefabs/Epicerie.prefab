@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1662747019577030035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
-  m_LocalScale: {x: 0.23, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.23, y: 0.31, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,13 +101,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 3
   height: 2
-  baseHappiness: 0
-  basePopulation: 0
+  baseHappiness: 10
+  basePopulation: 1
   move_again: 0
   source: {fileID: -8307877384551597148}
-  placement: {fileID: 8300000, guid: a649c74ae6b5046a4af4b5b3b5a00ac9, type: 3}
+  placement: {fileID: 8300000, guid: 0989df179cc6a428abb6e42591a25275, type: 3}
   gm: {fileID: 7454961757942337409, guid: 10cf41abd071644379617567cd7db14c, type: 3}
   road: {fileID: 285867324706241117, guid: 10fa2bfd3f07c4c71bc7724a32828ce9, type: 3}
+  handId: 0
 --- !u!61 &5093624007101918732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,8 +145,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f04575dfdb774969b34e850214b35a1, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 0989df179cc6a428abb6e42591a25275, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

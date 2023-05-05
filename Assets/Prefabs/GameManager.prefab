@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7454961757942337408}
   - component: {fileID: 7454961757942337409}
+  - component: {fileID: 9016639886251720182}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,5 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceafbd9673dbd4d5998a0f302b2a9fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 7557018166791769397, guid: 622fbba57cf8b41ff9cc3a363d05d94e, type: 3}
   sb: {fileID: -1756024206689174528, guid: 5a0b195f12b654183b86cb64621cb657, type: 3}
+  board: {fileID: 7557018166791769397, guid: 622fbba57cf8b41ff9cc3a363d05d94e, type: 3}
+  hand: {fileID: 9016639886251720182}
+--- !u!114 &9016639886251720182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7454961757942337410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb2071dbd9404d359312f27fa816626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handSize: 5
+  buildings:
+  - {fileID: 1662747019577030036, guid: ade839b6d4f56432ab49318366977cd7, type: 3}
+  - {fileID: 4431924501805916976, guid: e64cabc17974044c4866213adc64fe89, type: 3}
+  - {fileID: 4056584857439540608, guid: ec0eb13a8540f46969dc68ed6408d376, type: 3}
+  - {fileID: 872522845595893187, guid: 38e4e0194d4a44b1497344c3f3af900e, type: 3}
+  - {fileID: 565694828324317376, guid: 44e6707a166b246b9a7bd37cf6457165, type: 3}

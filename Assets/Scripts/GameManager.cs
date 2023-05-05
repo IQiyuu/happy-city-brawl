@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] private Scoreboard	sb;
 	[SerializeField] private Grid   board;
-	[SerializeField] private Hand	hand;
+	[SerializeField] public Hand	hand;
 	private int		happiness, population;
 
 	void Start() { 
