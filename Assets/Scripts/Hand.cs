@@ -28,7 +28,6 @@ public class Hand : MonoBehaviour
             piecesList.Add(i, null);
             createPiece(i);
         }
-        print(ToString());
     }
 
     public override string ToString() {
@@ -42,9 +41,7 @@ public class Hand : MonoBehaviour
 
     public void replace(Building toRep) {
         deletePiece(toRep);
-        print(ToString());
         refill();
-        print(ToString());
     }
 
     public void deletePiece(Building toDel) {

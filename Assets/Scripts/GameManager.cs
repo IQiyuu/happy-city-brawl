@@ -28,11 +28,27 @@ public class GameManager : MonoBehaviour
 			Camera.main.transform.position = new Vector3(camPos.x, camPos.y - 1, -10);
 			hand.move(new Vector3(0, -1, 0));
 		}
+		sb.refresh(calculScore());
+	}
+
+	public Vector2	calculScore() {
+		int	pop = 0, hap = 0;
+		List<Building> closed;
+		for (int x = 0; x < board.width; x++) {
+			for (int y = 0; y < board.height; y++) {
+				var build = board.getTile(new Vector2(x, y)).getContent();
+				if (build != null && !closed.Contains(build)) {
+					pop += build.population;
+					hap += build.happiness;
+					closed.Add(closed);
+				}
+			}
+		}
+		return (new Vector2(pop, hap));
 	}
 
 	public void	addPopulation(int n) {
 		population += n;
-		sb.refresh(happiness, population);
 	}
 	public void	addHappiness(int n) { 
 		happiness += n;
@@ -41,11 +57,11 @@ public class GameManager : MonoBehaviour
 
 	public void	remPopulation(int n) { 
 		population -= n; 
-		sb.refresh(happiness, population);
 	}
 
 	public void	remHappiness(int n) { 
 		happiness -= n;
-		sb.refresh(happiness, population);
 	}
+
+	public Grid	getBoard() { return board; }
 }

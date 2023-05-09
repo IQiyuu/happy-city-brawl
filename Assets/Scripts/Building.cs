@@ -13,7 +13,7 @@ public class Building : MonoBehaviour
     [SerializeField] AudioClip placement;
     [SerializeField] GameManager gm;
     [SerializeField] private GameObject  road;
-    private int hp,pp;
+    private int base_hp, base_pp, happiness, population;
     public int  handId = 0;
 
     void    Start() {
@@ -21,8 +21,8 @@ public class Building : MonoBehaviour
     }
 
     void    Init() {
-        hp = baseHappiness;
-        pp = basePopulation;
+        base_hp = baseHappiness;
+        base_pp = basePopulation;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -179,9 +179,28 @@ public class Building : MonoBehaviour
         //print(startingX + " " + startingY);
         source.PlayOneShot(placement, 1);
         transform.position = new Vector3(startingX + ((float)(width) / 4), startingY - ((float)(height) / 4), -1);
+        /* si c est un parc ajouter 1 pop A chaque maison autour
+        si c est une maison ajouter 1 bonheur A chaque maison autour
+        si c est une usine ajouter -1 bonheur POUR chaque batiment autour sauf usine
+        si c est une ecole ajouter 1 bonheur AUX maisons a 3 cases autour
+        si c est une epicerie gagne 1 bonheur POUR chaque maison autour
+        */
+        calculatePieceBonus(gm.getBoard(), (int)startingX * 2, (int)startingY * 2);
         gm.addPopulation(pp);
         gm.addHappiness(hp);
         gm.hand.replace(this);
+    }
+
+    void calculatePieceBonus(Grid board, int x, int y) {
+        switch (name) {
+            case "epicierie":
+                print("epicerie");
+                break;
+            case "parc":
+                print("parc");
+                break;
+
+        }
     }
 
     void removePiece() {
