@@ -10,6 +10,15 @@ public class Hand : MonoBehaviour
     [SerializeField] List<Building> buildings;
     Random rnd = new Random();
 
+
+    public void move(Vector3 m) {
+        for (int i = 0; i < handSize; i++) {
+            var p = piecesList[i].transform.position;
+            piecesList[i].transform.position = new Vector3(p.x + m.x, p.y + m.y, p.z);
+        }
+        print(ToString() + "------------------");
+    }
+
     public Building getRandomBuilding() {
         return (buildings[rnd.Next(buildings.Count)]);
     }
@@ -19,14 +28,27 @@ public class Hand : MonoBehaviour
             piecesList.Add(i, null);
             createPiece(i);
         }
+        print(ToString());
+    }
+
+    public override string ToString() {
+        string  ret = "";
+
+        for (int i = 0; i < handSize; i++) {
+            ret += piecesList[i] + "\n";
+        }
+        return ret;
     }
 
     public void replace(Building toRep) {
-        delete(toRep);
+        deletePiece(toRep);
+        print(ToString());
         refill();
+        print(ToString());
     }
 
-    private void delete(Building toDel) {
+    public void deletePiece(Building toDel) {
+        print(toDel.handId + " " + this.piecesList[toDel.handId]);
         piecesList[toDel.handId] = null;
         toDel.handId = -1;
     }
@@ -40,9 +62,7 @@ public class Hand : MonoBehaviour
 
     public void refill() {
         for(int i = 0; i < handSize; i++)
-            try {
-                if (piecesList[i] == null){
-                    createPiece(i);}
-            } catch {}
+            if (piecesList[i] == null)
+                createPiece(i);
     }
 }

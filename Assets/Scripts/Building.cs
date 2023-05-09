@@ -23,6 +23,7 @@ public class Building : MonoBehaviour
     void    Init() {
         hp = baseHappiness;
         pp = basePopulation;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void    OnMouseDown() {
@@ -152,11 +153,17 @@ public class Building : MonoBehaviour
                 if (tile != null) {
                     //print(tile.getContent() + " at (" + (startingX * 2 + i) + "," + (startingY * 2 - j - 1) + ")");
                     if (tile.getContent() != null) {
+                        var camPos = Camera.main.transform.position;
                         print("it is NOT an empty place, there is an " + tile.getContent().name + " at (" + (startingX + i) + "," + (startingY - j) + ")");
+                        transform.position = new Vector3(camPos.x - 9, camPos.y - 4 + (2 * handId), -2);
+                        transform.eulerAngles = new Vector3(0, 0, 0);
                         return ;
                     }
                 } else {
+                    var camPos = Camera.main.transform.position;
                     print("Not in grid(" + (startingX + i) * 2 + "," + (startingY - j) * 2 + ")");
+                    transform.position = new Vector3(camPos.x - 9, camPos.y - 4 + (2 * handId), -2);
+                    transform.eulerAngles = new Vector3(0, 0, 0);
                     return ;
                 }
             }

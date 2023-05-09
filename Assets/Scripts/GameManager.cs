@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
 		var camPos = Camera.main.transform.position;
 		if(Input.GetAxisRaw("Mouse ScrollWheel") > 0){
 			Camera.main.transform.position = new Vector3(camPos.x, camPos.y + 1, -10);
+			hand.move(new Vector3(0, 1, 0));
 		}
 		else if(Input.GetAxisRaw("Mouse ScrollWheel") < 0){
 			Camera.main.transform.position = new Vector3(camPos.x, camPos.y - 1, -10);
+			hand.move(new Vector3(0, -1, 0));
 		}
 	}
 
