@@ -186,8 +186,8 @@ public class Building : MonoBehaviour
         si c est une epicerie gagne 1 bonheur POUR chaque maison autour
         */
         calculatePieceBonus(gm.getBoard(), (int)startingX * 2, (int)startingY * 2);
-        gm.addPopulation(pp);
-        gm.addHappiness(hp);
+        gm.addPopulation(population);
+        gm.addHappiness(happiness);
         gm.hand.replace(this);
     }
 
@@ -218,19 +218,19 @@ public class Building : MonoBehaviour
         }
         placed = false;
         taken = false;
-        gm.remPopulation(pp);
-        gm.remHappiness(hp);
+        gm.remPopulation(population);
+        gm.remHappiness(happiness);
     }
 
-    public int  getPopulation() { return pp; }
+    public int  getPopulation() { return population; }
 
-    public int  getHappiness() { return hp; }
+    public int  getHappiness() { return happiness; }
 
-    public void addHappiness(int n) { hp += n; }
+    public void addHappiness(int n) { happiness += n; }
 
-    public void addPopulation(int n) { pp += n; }
+    public void addPopulation(int n) { population += n; }
 
-    public void resetHapiness(int n) { hp = baseHappiness; }
+    public void resetHapiness(int n) { happiness = baseHappiness; }
 
-    public void resetPopulation(int n) { pp = basePopulation; }
+    public void resetPopulation(int n) { population = basePopulation; }
 }

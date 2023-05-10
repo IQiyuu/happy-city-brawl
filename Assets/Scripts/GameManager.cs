@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 		Camera.main.transform.position = new Vector3(board.width / 1.5f - 2, board.height / 4 + 0.5f , -10);
 		happiness = 0;
 		population = 0;
-		sb.refresh(happiness, population);
 		hand.generate();
+		sb.refresh(calculScore());
 	}
 
 	void Update() {
@@ -33,14 +33,17 @@ public class GameManager : MonoBehaviour
 
 	public Vector2	calculScore() {
 		int	pop = 0, hap = 0;
-		List<Building> closed;
+		List<Building> closed = new List<Building>();
 		for (int x = 0; x < board.width; x++) {
 			for (int y = 0; y < board.height; y++) {
-				var build = board.getTile(new Vector2(x, y)).getContent();
-				if (build != null && !closed.Contains(build)) {
-					pop += build.population;
-					hap += build.happiness;
-					closed.Add(closed);
+				var tile = board.getTile(new Vector2(x, y)).getContent();
+				if (tile != null) {
+					var build = tile.GetComponent<Building>();
+					if (!closed.Contains(build)) {
+						pop += build.getPopulation();
+						hap += build.getHappiness();
+						closed.Add(build);
+					}
 				}
 			}
 		}
@@ -52,7 +55,6 @@ public class GameManager : MonoBehaviour
 	}
 	public void	addHappiness(int n) { 
 		happiness += n;
-		sb.refresh(happiness, population);
 	}
 
 	public void	remPopulation(int n) { 
