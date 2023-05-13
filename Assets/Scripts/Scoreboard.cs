@@ -8,8 +8,8 @@ public class    Scoreboard : MonoBehaviour
     [SerializeField] Text   happiness, population, score;
 
     public void refresh(Vector2 values) {
-        happiness.text = values.x.ToString();
-        population.text = values.y.ToString();
+        population.text = values.x.ToString();
+        happiness.text = values.y.ToString();
         score.text = (values.x * values.y).ToString();
     }
 }

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 		happiness = 0;
 		population = 0;
 		hand.generate();
-		sb.refresh(calculScore());
+		sb.refresh(new Vector2(0, 0));
 	}
 
 	void Update() {

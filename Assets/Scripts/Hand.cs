@@ -16,7 +16,7 @@ public class Hand : MonoBehaviour
             var p = piecesList[i].transform.position;
             piecesList[i].transform.position = new Vector3(p.x + m.x, p.y + m.y, p.z);
         }
-        print(ToString() + "------------------");
+        //print(ToString() + "------------------");
     }
 
     public Building getRandomBuilding() {
@@ -45,7 +45,7 @@ public class Hand : MonoBehaviour
     }
 
     public void deletePiece(Building toDel) {
-        print(toDel.handId + " " + this.piecesList[toDel.handId]);
+        //print(toDel.handId + " " + this.piecesList[toDel.handId]);
         piecesList[toDel.handId] = null;
         toDel.handId = -1;
     }

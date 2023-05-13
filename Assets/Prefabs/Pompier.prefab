@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1827611352574911865}
   - component: {fileID: 2253651999860794102}
   - component: {fileID: 565694828324317376}
+  - component: {fileID: 4573518676594347382}
   - component: {fileID: 313645547011365900}
   - component: {fileID: 9100264198438448936}
   m_Layer: 0
@@ -108,7 +109,33 @@ MonoBehaviour:
   placement: {fileID: 8300000, guid: 447bb80d32b3640c88ba8efb75aeda95, type: 3}
   gm: {fileID: 7454961757942337409, guid: 10cf41abd071644379617567cd7db14c, type: 3}
   road: {fileID: 285867324706241117, guid: 10fa2bfd3f07c4c71bc7724a32828ce9, type: 3}
+  type: {fileID: 11400000, guid: a1f7a7ffbf0edb548868ab1fdf06b241, type: 2}
+  bonus: {fileID: 4573518676594347382}
   handId: 0
+--- !u!114 &4573518676594347382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915168005798320833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc4219bf996f0e4da1c86e683cd111d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  values:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  type:
+  - {fileID: 11400000, guid: a1f7a7ffbf0edb548868ab1fdf06b241, type: 2}
+  - {fileID: 11400000, guid: 6a92e5dad53a3824c90e2a124bd721a3, type: 2}
+  - {fileID: 11400000, guid: d1ffc10bb54bacf47b92fdaf9872c969, type: 2}
+  - {fileID: 11400000, guid: 7b67ea4c56722524fa192119cbb5737d, type: 2}
+  - {fileID: 11400000, guid: f16f71d5e4a068341835fa11b06779ff, type: 2}
 --- !u!61 &313645547011365900
 BoxCollider2D:
   m_ObjectHideFlags: 0

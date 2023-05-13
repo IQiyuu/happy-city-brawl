@@ -5,7 +5,7 @@ using System;
 
 public class Building : MonoBehaviour
 {
-    [SerializeField] private int    width, height, baseHappiness, basePopulation;
+    [SerializeField] private int    width, height;
     private bool    taken = false;
     private bool    placed = false;
     [SerializeField] private bool    move_again;
@@ -13,7 +13,9 @@ public class Building : MonoBehaviour
     [SerializeField] AudioClip placement;
     [SerializeField] GameManager gm;
     [SerializeField] private GameObject  road;
-    private int base_hp, base_pp, happiness, population;
+    [SerializeField] BuildingType   type;
+    [SerializeField] Bonus bonus;
+    public int baseHappiness, basePopulation, happiness, population;
     public int  handId = 0;
 
     void    Start() {
@@ -21,8 +23,8 @@ public class Building : MonoBehaviour
     }
 
     void    Init() {
-        base_hp = baseHappiness;
-        base_pp = basePopulation;
+        happiness = baseHappiness;
+        population = basePopulation;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -52,6 +54,28 @@ public class Building : MonoBehaviour
         var tmp = height;
         height = width;
         width = tmp;
+    }
+
+    List<Building> nearbyBuildings(int x, int y, int width, int height) {
+        List<Building> nearby = new List<Building>();
+        Grid board = gm.getBoard();
+
+        for(int i = x - 1; i < x + width; i++) {
+            if (i >= 0) {
+                for(int j = y - height - 1; j < y; j++) {
+                    if (j >= 0) {
+                        var tile = board.getTile(new Vector2(i, j)).getContent();
+			    	    if (tile != null) {
+			    	    	var build = tile.GetComponent<Building>();
+			    	    	if (!nearby.Contains(build) && build != this)
+			    	    		nearby.Add(build);
+			    	    }
+                    }
+                }
+            }
+        }
+        //print(nearby[0].bonus.search(type) + " " + nearby[0].bonus.values[nearby[0].bonus.search(type)].y);
+        return nearby;
     }
 /*
     bool    check_road(float startingX, float startingY) {  Probleme avec le check pour savoir si la route est posable / la tile qui est set est pas la bonne a chaque fois 
@@ -185,21 +209,22 @@ public class Building : MonoBehaviour
         si c est une ecole ajouter 1 bonheur AUX maisons a 3 cases autour
         si c est une epicerie gagne 1 bonheur POUR chaque maison autour
         */
-        calculatePieceBonus(gm.getBoard(), (int)startingX * 2, (int)startingY * 2);
-        gm.addPopulation(population);
-        gm.addHappiness(happiness);
+        applyBonus(gm.getBoard(), (int)(startingX * 2), (int)(startingY * 2));
         gm.hand.replace(this);
     }
 
-    void calculatePieceBonus(Grid board, int x, int y) {
-        switch (name) {
-            case "epicierie":
-                print("epicerie");
-                break;
-            case "parc":
-                print("parc");
-                break;
-
+    void applyBonus(Grid board, int x, int y) {
+        foreach(Building building in nearbyBuildings(x, y, width, height)){
+            for(int i = 0; i < bonus.type.Count; i++) {
+                if (bonus.type[i] == building.type) {
+                    print(building.type);
+                    building.happiness += (int)bonus.values[i].x;
+                    building.population += (int)bonus.values[i].y;
+                    happiness += (int)building.bonus.values[building.bonus.search(type)].x;
+                    population += (int)building.bonus.values[building.bonus.search(type)].y;
+                    break ;
+                }
+            }
         }
     }
 

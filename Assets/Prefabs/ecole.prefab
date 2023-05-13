@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 872522845595893184}
   - component: {fileID: 872522845595893185}
   - component: {fileID: 872522845595893187}
+  - component: {fileID: -1613387571703652033}
   - component: {fileID: 872522845595893186}
   - component: {fileID: 8756494918253297605}
   m_Layer: 0
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &872522845595893185
 SpriteRenderer:
@@ -108,7 +109,33 @@ MonoBehaviour:
   placement: {fileID: 8300000, guid: 7706daa0691a14d61a940056e76c5909, type: 3}
   gm: {fileID: 7454961757942337409, guid: 10cf41abd071644379617567cd7db14c, type: 3}
   road: {fileID: 285867324706241117, guid: 10fa2bfd3f07c4c71bc7724a32828ce9, type: 3}
+  type: {fileID: 11400000, guid: 6a92e5dad53a3824c90e2a124bd721a3, type: 2}
+  bonus: {fileID: -1613387571703652033}
   handId: 0
+--- !u!114 &-1613387571703652033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872522845595893212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc4219bf996f0e4da1c86e683cd111d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  values:
+  - {x: 5, y: 0}
+  - {x: 0, y: 0}
+  - {x: 5, y: 0}
+  - {x: 5, y: 0}
+  - {x: 0, y: 0}
+  type:
+  - {fileID: 11400000, guid: f16f71d5e4a068341835fa11b06779ff, type: 2}
+  - {fileID: 11400000, guid: 7b67ea4c56722524fa192119cbb5737d, type: 2}
+  - {fileID: 11400000, guid: d1ffc10bb54bacf47b92fdaf9872c969, type: 2}
+  - {fileID: 11400000, guid: a1f7a7ffbf0edb548868ab1fdf06b241, type: 2}
+  - {fileID: 11400000, guid: 6a92e5dad53a3824c90e2a124bd721a3, type: 2}
 --- !u!82 &872522845595893186
 AudioSource:
   m_ObjectHideFlags: 0
